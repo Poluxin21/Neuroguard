@@ -1,11 +1,12 @@
 package org.atlas.neuroguard.security.service.user;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.atlas.neuroguard.security.domain.user.User;
 import org.atlas.neuroguard.security.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,40 +16,39 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository)
-    {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public User createUser(User user) {
-        Optional<User> email = userRepository.findByEmail(user.email);
-        if (email.isPresent())
-            throw new IllegalArgumentException("Email já está em uso.");
-
-        return userRepository.save(user);
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> getUserById(UUID userId) {
-        Optional<User> userQuery = userRepository.findById(userId);
-        if(!userQuery.isPresent())
-            throw new RuntimeException("User not found");
-
-        return userQuery;
+    public Optional<User> findById(UUID uuid) {
+        return userRepository.findById(uuid);
     }
 
     @Override
-    public User updateUser(UUID userId, User user) {
-        return userRepository.findById(userId).map(existingUser -> {
-            existingUser.setName(user.getName());
-            existingUser.setEmail(user.getEmail());
-            return userRepository.save(existingUser);
-        }).orElseThrow(() -> new RuntimeException("User not found"));
+    public User create(User entity) {
+        var userQuery = userRepository.findByEmail(entity.email);
+        if (userQuery != null)
+            throw new IllegalArgumentException("Email já em uso");
+        return userRepository.save(entity);
     }
 
     @Override
-    public void deleteUser(UUID userId) {
-        userRepository.deleteById(userId);
+    public User update(UUID uuid, User entity) {
+        if (userRepository.existsById(uuid)) {
+            entity.id = uuid;
+            return userRepository.save(entity);
+        }
+        throw new EntityNotFoundException("Usuário não encontrado");
+    }
+
+    @Override
+    public void delete(UUID uuid) {
+        userRepository.deleteById(uuid);
     }
 }
