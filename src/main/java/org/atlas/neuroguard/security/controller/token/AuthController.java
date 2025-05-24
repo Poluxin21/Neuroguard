@@ -1,6 +1,9 @@
 package org.atlas.neuroguard.security.controller.token;
 
+import org.atlas.neuroguard.security.domain.user.User;
 import org.atlas.neuroguard.security.service.jwt.JwtService;
+import org.atlas.neuroguard.security.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,15 +13,25 @@ import java.util.HashMap;
 public class AuthController {
 
     private final JwtService jwtService;
+    private final UserService userService;
 
-    public AuthController(JwtService jwtService) {
+    @Autowired
+    public AuthController(JwtService jwtService, UserService userService)
+    {
         this.jwtService = jwtService;
+        this.userService = userService;
     }
 
     @PostMapping
     public String login(@RequestParam String username) {
         HashMap<String, Object> claims = new HashMap<>();
-//        claims.put("role", "USER");
+
+        User user = userService.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        claims.put("tipoUsuario", user.getTipoUsuario().name());
+        claims.put("tipoPermissao", user.getTipoPermissao().name());
+        claims.put("ativo", user.isAtivo());
 
         return jwtService.generateToken(username, claims);
     }

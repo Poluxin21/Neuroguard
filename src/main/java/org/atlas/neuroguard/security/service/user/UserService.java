@@ -51,4 +51,8 @@ public class UserService implements IUserService {
     public void delete(UUID uuid) {
         userRepository.deleteById(uuid);
     }
+
+    public Optional<User> findByEmail(String mail) {
+        return userRepository.findByEmail(mail);
+    }
 }
