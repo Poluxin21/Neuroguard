@@ -1,4 +1,4 @@
-package org.atlas.neuroguard.infra.controllerutils;
+package org.atlas.neuroguard.infra.controllerUtils;
 
 import java.util.List;
 import java.util.Optional;

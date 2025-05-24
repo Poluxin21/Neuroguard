@@ -1,7 +1,6 @@
 // Genérico RestController com o caminho base configurado
-package org.atlas.neuroguard.infra.controllerutils;
+package org.atlas.neuroguard.infra.controllerUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
