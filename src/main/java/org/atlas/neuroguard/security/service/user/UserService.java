@@ -32,9 +32,18 @@ public class UserService implements IUserService {
 
     @Override
     public User create(User entity) {
-        var userQuery = userRepository.findByEmail(entity.email);
-        if (userQuery != null)
-            throw new IllegalArgumentException("Email já em uso");
+        var userQuery = userRepository.findByUsernameOrEmail(entity.username, entity.email);
+
+        if (userQuery.isPresent()) {
+            var existingUser = userQuery.get();
+
+            if(existingUser.getEmail().equals(entity.getEmail()))
+                throw new IllegalArgumentException("Email já está em uso");
+
+            if(existingUser.getUsername().equals(entity.getUsername()))
+                throw new IllegalArgumentException("Username já está em uso");
+        }
+
         return userRepository.save(entity);
     }
 

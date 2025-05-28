@@ -18,6 +18,7 @@ public class User {
 
     public String nome;
     public String sobrenome;
+    public String username;
     public String password;
     public String email;
     public TipoUsuario tipoUsuario;
@@ -29,6 +30,7 @@ public class User {
     public User(
             String nome,
             String sobrenome,
+            String username,
             String password,
             String email,
             TipoPermissao tipoPermissao,
@@ -37,6 +39,7 @@ public class User {
     {
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.tipoPermissao = tipoPermissao;
@@ -45,34 +48,14 @@ public class User {
 
     }
 
-    public UUID getId()
-    {
-        return this.id;
-    }
-
-    public String getName()
-    {
-        return this.nome;
-    }
-
-    public String getSobrenome()
-    {
-        return this.sobrenome;
-    }
-
     public String getEmail()
     {
         return this.email;
     }
 
-    public void setName(String nome)
+    public String getUsername()
     {
-        this.nome = nome;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
+        return this.username;
     }
 
     public TipoPermissao getTipoPermissao() {

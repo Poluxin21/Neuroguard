@@ -29,6 +29,8 @@ public class AuthController {
         User user = userService.findByEmail(username)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        claims.put("username", user.getUsername());
+        claims.put("email", user.getEmail());
         claims.put("tipoUsuario", user.getTipoUsuario().name());
         claims.put("tipoPermissao", user.getTipoPermissao().name());
         claims.put("ativo", user.isAtivo());
