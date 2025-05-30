@@ -14,11 +14,6 @@ public abstract class GenericRestController<T, ID> implements RestApi<T> {
         this.service = service;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<T>> findAll() {
-        return ResponseEntity.ok(service.findAll());
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<T> findById(@PathVariable ID id) {
         return ResponseEntity.of(service.findById(id));
