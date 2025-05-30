@@ -8,7 +8,7 @@ import org.atlas.neuroguard.infra.security.domain.user.enums.TipoUsuario;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "appuser")
+@Table(name = "appusers")
 public class User {
 
     @Id
