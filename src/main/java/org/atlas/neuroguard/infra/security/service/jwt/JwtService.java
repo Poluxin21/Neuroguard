@@ -1,4 +1,4 @@
-package org.atlas.neuroguard.security.service.jwt;
+package org.atlas.neuroguard.infra.security.service.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

@@ -1,8 +1,8 @@
-package org.atlas.neuroguard.security.controller.token;
+package org.atlas.neuroguard.infra.security.controller.token;
 
-import org.atlas.neuroguard.security.domain.user.User;
-import org.atlas.neuroguard.security.service.jwt.JwtService;
-import org.atlas.neuroguard.security.service.user.UserService;
+import org.atlas.neuroguard.infra.security.domain.user.User;
+import org.atlas.neuroguard.infra.security.service.jwt.JwtService;
+import org.atlas.neuroguard.infra.security.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +29,7 @@ public class AuthController {
         User user = userService.findByEmail(username)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        claims.put("id", user.getId());
         claims.put("username", user.getUsername());
         claims.put("email", user.getEmail());
         claims.put("tipoUsuario", user.getTipoUsuario().name());

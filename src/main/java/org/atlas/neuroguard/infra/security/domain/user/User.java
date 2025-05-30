@@ -1,10 +1,9 @@
-package org.atlas.neuroguard.security.domain.user;
+package org.atlas.neuroguard.infra.security.domain.user;
 
 
 import jakarta.persistence.*;
-import org.atlas.neuroguard.security.domain.user.enums.TipoPermissao;
-import org.atlas.neuroguard.security.domain.user.enums.TipoUsuario;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.atlas.neuroguard.infra.security.domain.user.enums.TipoPermissao;
+import org.atlas.neuroguard.infra.security.domain.user.enums.TipoUsuario;
 
 import java.util.UUID;
 
@@ -46,6 +45,11 @@ public class User {
         this.tipoUsuario = tipoUsuario;
         this.ativo = ativo;
 
+    }
+
+    public UUID getId()
+    {
+        return this.id;
     }
 
     public String getEmail()
