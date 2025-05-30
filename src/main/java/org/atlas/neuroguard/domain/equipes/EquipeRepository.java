@@ -9,6 +9,6 @@ import java.util.UUID;
 public interface EquipeRepository extends JpaRepository<Equipe, UUID> {
     Optional<Equipe> findByCodigoAndUser_Id(String codigo, UUID userId);
     Optional<Equipe> findById(UUID id);
-    Optional<Equipe> findByUser(User user);
+    Optional<Equipe> findByUser_Id(UUID userId);
 
 }

@@ -33,5 +33,13 @@ public class Equipe {
         return codigo;
     }
 
+    public void setUser(User user) {
+        return;
+    }
+
+    public void setCodigo(String codigo) {
+        return;
+    }
+
 
 }
