@@ -1,5 +1,6 @@
 package org.atlas.neuroguard.infra.security.domain.user.dto;
 
+import org.atlas.neuroguard.infra.config.ApiErrorResponse;
 import org.atlas.neuroguard.infra.security.domain.user.enums.TipoPermissao;
 import org.atlas.neuroguard.infra.security.domain.user.enums.TipoUsuario;
 
