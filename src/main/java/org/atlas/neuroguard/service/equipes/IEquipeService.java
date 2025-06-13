@@ -1,8 +1,7 @@
-package org.atlas.neuroguard.service;
+package org.atlas.neuroguard.service.equipes;
 
 import org.atlas.neuroguard.domain.equipes.Equipe;
 import org.atlas.neuroguard.domain.equipes.dto.EquipeDTO;
-import org.atlas.neuroguard.infra.security.domain.user.User;
 
 import java.util.Optional;
 import java.util.UUID;

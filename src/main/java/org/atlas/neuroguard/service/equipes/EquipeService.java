@@ -1,4 +1,4 @@
-package org.atlas.neuroguard.service;
+package org.atlas.neuroguard.service.equipes;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.atlas.neuroguard.domain.equipes.Equipe;

@@ -2,7 +2,7 @@ package org.atlas.neuroguard.controller.equipes;
 
 import org.atlas.neuroguard.domain.equipes.Equipe;
 import org.atlas.neuroguard.domain.equipes.dto.EquipeDTO;
-import org.atlas.neuroguard.service.EquipeService;
+import org.atlas.neuroguard.service.equipes.EquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
