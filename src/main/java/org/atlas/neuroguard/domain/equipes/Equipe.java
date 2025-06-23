@@ -3,6 +3,7 @@ package org.atlas.neuroguard.domain.equipes;
 
 import jakarta.persistence.*;
 import org.atlas.neuroguard.infra.security.domain.user.User;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
@@ -10,8 +11,11 @@ import java.util.UUID;
 public class Equipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
     public UUID id;
+
     public String codigo;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +28,10 @@ public class Equipe {
     }
 
     public Equipe() {}
+
+    public UUID getId() {
+        return id;
+    }
 
     public User getUser() {
         return user;

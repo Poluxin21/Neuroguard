@@ -4,6 +4,7 @@ package org.atlas.neuroguard.infra.security.domain.user;
 import jakarta.persistence.*;
 import org.atlas.neuroguard.infra.security.domain.user.enums.TipoPermissao;
 import org.atlas.neuroguard.infra.security.domain.user.enums.TipoUsuario;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
@@ -12,7 +13,9 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(updatable = false, nullable = false)
     public UUID id;
 
     public String nome;

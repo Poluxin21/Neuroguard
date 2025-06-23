@@ -3,6 +3,7 @@ package org.atlas.neuroguard.controller.equipes;
 import org.atlas.neuroguard.domain.equipes.Equipe;
 import org.atlas.neuroguard.domain.equipes.dto.EquipeDTO;
 import org.atlas.neuroguard.service.equipes.EquipeService;
+import org.atlas.neuroguard.service.equipes.IEquipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/equipes")
+@RequestMapping("/api/equipes")
 public class EquipeController {
 
-    private final EquipeService equipeService;
+    private final IEquipeService equipeService;
 
     @Autowired
-    public EquipeController(EquipeService equipeService) {
+    public EquipeController(IEquipeService equipeService) {
         this.equipeService = equipeService;
     }
 
@@ -25,7 +26,7 @@ public class EquipeController {
         return equipeService.findByUser_Id(userId);
     }
 
-    @GetMapping(value = "/{uuid}")
+    @GetMapping("/{uuid}")
     public Optional<Equipe> getEquipe(@PathVariable UUID uuid) {
         return equipeService.findById(uuid);
     }
@@ -35,12 +36,12 @@ public class EquipeController {
         return equipeService.create(dto);
     }
 
-    @PutMapping(value = "/{uuid}")
+    @PutMapping("/{uuid}")
     public EquipeDTO updateEquipe(@PathVariable UUID uuid, @RequestBody EquipeDTO dto) {
         return equipeService.update(uuid, dto);
     }
 
-    @DeleteMapping(value = "/{uuid}")
+    @DeleteMapping("/{uuid}")
     public void deleteEquipe(@PathVariable UUID uuid, @RequestParam UUID userId) {
         equipeService.delete(uuid, userId);
     }
